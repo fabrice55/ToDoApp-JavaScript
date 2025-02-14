@@ -1,28 +1,17 @@
 const express = require("express")
-const dotenv = require("dotenv")
-dotenv.config()
-const { MongoClient, ObjectId, GridFSBucket } = require("mongodb")
-const sanitizeHTML = require('sanitize-html')
+const createItem = require('./api/create-item')
+const updateItem = require('./api/update-item')
+const deleteItem = require('./api/delete-item')
+const db = require('./db')
+const app = express() 
 
-let app = express() 
+
 app.use(express.static('public'))
-
-let db
-let dbName = "TodoApp"
-
-MongoClient.connect(process.env.CONNECTIONSTRING) 
-.then(client => {
-  console.log("Connected to MongoDB Atlas")
-
-  db = client.db(dbName)
-
-  app.listen(process.env.PORT, () => {
-    console.log("Server is running on port 3000")
-  })
-})
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
+app.use('/api', require('./router-api'))
 
 function passwordProtected(req, res, next) {
  res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
@@ -35,9 +24,9 @@ if (req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA==") {
 
 app.use(passwordProtected)
 
-app.get("/",function(req, res){
+app.get("/", function(req, res){
 
-  db.collection('items').find().toArray().then (items => {
+  db.db().collection('items').find().toArray().then (items => {
     res.send(`<!DOCTYPE html>
     <html>
     <head>
@@ -76,23 +65,10 @@ app.get("/",function(req, res){
    
 })
 
-app.post("/create-item", async function (req, res) {
-  let safeText = sanitizeHTML(req.body.text, {allowedTags: [], allowedAttributes: {}})
-   await db.collection('items').insertOne({text: safeText}).then(function(err, info) {
-    info = {insertedId: new ObjectId(req.body.id)}
-    res.json({_id:info.insertedId.toString(), text: req.body.text})
-   })
-})
+app.post("/create-item", createItem.create)
 
-app.post('/update-item', async function(req, res) {
- let safeText = sanitizeHTML(req.body.text, {allowedTags: [], allowedAttributes: {}})
-  await db.collection('items').findOneAndUpdate({_id: new ObjectId(req.body.id)}, {$set:{text:safeText}}).then(function() {
-  res.send("Success")
- }) })
+app.post('/update-item', updateItem.update)
 
+app.post('/delete-item', deleteItem.delete)
 
-app.post('/delete-item', async function(req, res) {
-  await db.collection('items').deleteOne({_id: new ObjectId(req.body.id)}).then(function() {
-    res.send("Success")
-   }) 
- })
+module.exports = app

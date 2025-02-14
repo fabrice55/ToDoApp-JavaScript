@@ -1,15 +1,21 @@
 {
-    "version":2,
-    "builds":[
-        {
-            "src": "app.js",
-            "use": "@vercel/node"
-        }
+    "version": 2,
+    "builds": [
+      { "src": "api/*.js", "use": "@vercel/node" }
     ],
-    "routes":[
-        {
-            "src": "/(.*)",
-            "dest": "app.js"
+    "routes": [
+        { 
+            "src": "/create-item", 
+            "dest": "/api/create-item.js" 
+        },
+        { 
+            "src": "/update-item",
+            "dest": "/api/update-item.js" 
+        },
+        { 
+            "src": "/delete-item", 
+            "dest": "/api/delete-item.js" 
         }
     ]
-}
+  }
+  
