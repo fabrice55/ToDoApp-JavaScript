@@ -38,8 +38,8 @@ app.listen(process.env.PORT, () => {
 
 app.post("/create-item", createItem.create)
 
-app.post('/update-item', updateItem.update)
+app.post('/update-item', updateItem.apiUpdate)
 
-app.post('/delete-item', deleteItem.delete)
+app.post('/delete-item', deleteItem.apiDelete)
 
 module.exports = app
