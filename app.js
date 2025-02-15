@@ -1,17 +1,17 @@
 const express = require("express")
+const app = express() 
 const createItem = require('./api/create-item')
 const updateItem = require('./api/update-item')
 const deleteItem = require('./api/delete-item')
+const routerApi = require('./router-api')
 const db = require('./db')
-const app = express() 
 
-
-app.use(express.static('public'))
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+app.use(express.static('public'))
 
-app.use('/api', require('./router-api'))
+app.use('/api', routerApi)
 
 function passwordProtected(req, res, next) {
  res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
@@ -64,6 +64,15 @@ app.get("/", function(req, res){
   })
    
 })
+
+if(!db){
+  console.error("Database is not initialized yet!")
+  process.exit(1)
+}
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`)
+  })
 
 app.post("/create-item", createItem.create)
 

@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "watch": "nodemon db",
+    "watch": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node db.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
