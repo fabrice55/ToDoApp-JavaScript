@@ -6,7 +6,7 @@ exports.home = async function(req, res){
 
     try {
       let items = await database.collection('items').find().toArray()
-      console.log("Fetched items from the database:", items)
+      //console.log("Fetched items from the database:", items)
       res.send(`<!DOCTYPE html>
       <html>
       <head>

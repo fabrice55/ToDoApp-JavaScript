@@ -8,12 +8,22 @@ function itemTemplate(item) {
   </li>`
 }
 
-//initial Page Load Render
-let ourHTML = items.map(function(item) {
-    return itemTemplate(item)
-}).join('')
+axios.post('/api/view-items').then(response => {
+    console.log("Fetched items from API:", response.data)
 
-document.getElementById("item-list").insertAdjacentHTML("beforeend", ourHTML)
+//initial Page Load Render
+
+if (Array.isArray(items) && items.length > 0) {
+    let ourHTML = items.map(function(item) {
+        return itemTemplate(item)
+    }).join('')
+    
+    document.getElementById("item-list").insertAdjacentHTML("beforeend", ourHTML)
+} else {
+    console.log("No items to display")
+}}).catch(err => {
+    console.error("Error fetching items:", err)
+  })
 
 //Create Feature
 let createField = document.getElementById("create-field")
