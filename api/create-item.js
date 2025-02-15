@@ -18,6 +18,5 @@ exports.apiCreate = async function (req, res) {
 
   let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
   const result = await db.db().collection("items").insertOne({ text: safeText })
-
-  res.json({ _id: result.insertedId.toString(), text: safeText })
+  res.redirect('/')
 }

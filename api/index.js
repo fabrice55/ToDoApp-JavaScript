@@ -1,9 +1,12 @@
 const db = require('../db')
 const {ObjectId} = require('mongodb')
 
-exports.home = function(req, res){
+exports.home = async function(req, res){
+    const database =db.db()
 
-    db.db().collection('items').find().toArray().then (items => {
+    try {
+      let items = await database.collection('items').find().toArray()
+      console.log("Fetched items from the database:", items)
       res.send(`<!DOCTYPE html>
       <html>
       <head>
@@ -36,9 +39,15 @@ exports.home = function(req, res){
         <script src="/browser.js"></script>
       </body>
       </html>`)
+
+    } catch(err) {
+      console.error("Error fetching items:", err)
+      res.status(500).send("Internal Server Error")
+    }
+    
       
   
-    })
+    
      
   }
 
