@@ -8,7 +8,7 @@ function itemTemplate(item) {
   </li>`
 }
 
-axios.get('/api/view-items').then(response => {
+axios.post('/api/view-items').then(response => {
     console.log("Fetched items from API:", response.data)
 
 //initial Page Load Render

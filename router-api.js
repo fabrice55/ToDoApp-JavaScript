@@ -8,7 +8,7 @@ const viewItems = require('./api/index')
 apiRouter.post('/create-item', createItem.apiCreate)
 apiRouter.post('/update-item', updateItem.apiUpdate)
 apiRouter.post('/delete-item', deleteItem.apiDelete)
-apiRouter.get('/view-items', viewItems.apiViewListOfItems)
+apiRouter.post('/view-items', viewItems.apiViewListOfItems)
 
 
 module.exports = apiRouter
