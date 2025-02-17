@@ -14,8 +14,8 @@ The command to run the app: **npm run watch**
 
 ## Authentication
 
-**Username:** learn
-**Password:** javascript
+- **Username:** learn
+- **Password:** javascript
 
 ## Vercel URL
 
