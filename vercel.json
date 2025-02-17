@@ -13,12 +13,8 @@
         },
         { 
             "src": "/(.*)", 
-            "dest": "/app.js",
-            "headers": { "cache-control": "s-maxage=1, stale-while-revalidate" } 
-        }
-    ],
-    "static": {
-        "public": "public"
-    } 
+            "dest": "/app.js" 
+        } 
+    ]
   }
   
