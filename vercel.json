@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "public": true,
     "builds": [
         { 
             "src": "app.js", 
@@ -15,6 +14,10 @@
         { 
             "src": "/(.*)", 
             "dest": "/app.js" 
+        },
+        {
+            "src":"/public/(.*)",
+            "dest":"/browser.js"
         } 
     ]
   }
