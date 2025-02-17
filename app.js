@@ -10,7 +10,7 @@ const db = require('./db')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
+app.use(express.static('public'))
 
 app.use('/api', routerApi)
 
@@ -24,7 +24,6 @@ if (req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA==") {
 }
 
 app.use(passwordProtected)
-app.use(express.static('public'))
 
 app.get("/", index.home)
 
