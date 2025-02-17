@@ -4,15 +4,16 @@ This a fullstack javaScript todo app with mongoDB database.
 
 ## Run App Locally
 
-1. Create an .env file in the root directory and the create the following variables:
+1. Clone the repository
+2. Run `npm install` to install all the dependencies.
+3. Create a .env file and give it the following variables:
 
 - **CONNECTIONSTRING**: your mongoDB URI,
-- **PORT**: port value. 
+- **PORT**: viable port value.
 
-2. I've used nodemon to run my server locally.
-The command to run the app: **npm run watch**
+4. Run `npm run watch` to start the server.
 
-## Authentication
+## Browser Authentication
 
 **Username:** learn
 **Password:** javascript
