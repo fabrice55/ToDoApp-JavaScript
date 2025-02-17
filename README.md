@@ -15,9 +15,11 @@ This a fullstack javaScript todo app with mongoDB database.
 
 ## Browser Authentication
 
-**Username:** learn
-**Password:** javascript
+- **Username:** learn
+- **Password:** javascript
 
 ## Vercel URL
 
 https://todo-app-nine-pi-93.vercel.app/
+
+## APIs Documentation coming soon!!!
