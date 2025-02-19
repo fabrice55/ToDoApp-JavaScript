@@ -22,4 +22,4 @@ This a fullstack javaScript todo app with mongoDB database.
 
 https://todo-app-nine-pi-93.vercel.app/
 
-## APIs Documentation coming soon!!!
+## APIs Documentation

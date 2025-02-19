@@ -1,10 +1,13 @@
+const dotenv = require('dotenv')
+dotenv.config()
 const db = require('../db')
 const {ObjectId} = require('mongodb')
 const sanitizeHTML = require('sanitize-html')
+const jwt = require("jsonwebtoken")
 
 
 exports.create = async function (req, res) {
-  let safeText = sanitizeHTML(req.body.item, {allowedTags: [], allowedAttributes: {}})
+  let safeText = sanitizeHTML(req.body.text, {allowedTags: [], allowedAttributes: {}})
    await db.db().collection("items").insertOne({text: safeText}).then(function(err, info) {
     info = {insertedId: new ObjectId(req.body.id)}
     res.json({_id:info.insertedId.toString(), text: req.body.text})
@@ -17,6 +20,11 @@ exports.apiCreate = async function (req, res) {
   }
 
   let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
-  const result = await db.db().collection("items").insertOne({ text: safeText })
-  res.redirect('/')
+  await db.db().collection("items").insertOne({ text: safeText }).then(result => {
+    info = {insertedId: new ObjectId(req.body.id)}
+    res.json("Success")
+  }).catch(errors => {
+    res.json(errors)
+  })
+  
 }

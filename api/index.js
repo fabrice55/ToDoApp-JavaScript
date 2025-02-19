@@ -1,6 +1,14 @@
 const db = require('../db')
 const {ObjectId} = require('mongodb')
 
+
+
+exports.apiViewListOfItems = async function(req, res) {
+  await db.db().collection('items').find().toArray().then(items => {
+    res.json(items)
+  })
+}
+
 exports.home = async function(req, res){
     const database =db.db()
 
@@ -51,8 +59,4 @@ exports.home = async function(req, res){
      
   }
 
-  exports.apiViewListOfItems = async function(req, res) {
-    await db.db().collection('items').find().toArray().then(items => {
-      res.json(items)
-    })
-  }
+ 

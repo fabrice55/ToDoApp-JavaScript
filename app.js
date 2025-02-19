@@ -16,12 +16,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api', routerApi)
 
 function passwordProtected(req, res, next) {
- res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
-if (req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA==") {
-  next()
-} else  {
-  res.status(401).send("Authentication required")
-}
+  res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
+  if (req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA==") {
+    next()
+  } else  {
+    res.status(401).send("Authentication required")
+  }
 }
 
 app.use(passwordProtected)
@@ -39,8 +39,8 @@ app.listen(process.env.PORT, () => {
 
 app.post("/create-item", createItem.create)
 
-app.post('/update-item', updateItem.apiUpdate)
+app.post('/update-item', updateItem.update)
 
-app.post('/delete-item', deleteItem.apiDelete)
+app.post('/delete-item', deleteItem.delete)
 
 module.exports = app
