@@ -20,11 +20,16 @@ exports.apiCreate = async function (req, res) {
   }
 
   let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
-  await db.db().collection("items").insertOne({ text: safeText }).then(result => {
-    info = {insertedId: new ObjectId(req.body.id)}
-    res.json({ message:"Todo sucessfully added", createItem:{id:info.insertedId.toString(), item: req.body.item} })
-  }).catch(errors => {
-    res.json(errors)
-  })
+  try {
+    const result = await db.db().collection("items").insertOne({ text: safeText })
+
+    if (!result.insertedId) {
+      return res.status(500).json({ error: "Failed to insert item" });
+    }
+
+    res.json({ message:"Todo sucessfully added", createItem:{id:result.insertedId.toString(), item: req.body.item,} })
+  } catch(err) {
+    res.status(500).json({error: "Database error"})
+  }
   
 }

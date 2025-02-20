@@ -16,6 +16,6 @@ exports.apiUpdate= async function(req, res) {
         {_id: new ObjectId(req.body.id)}, 
         {$set:{text:safeText}})
         .then(function() {
-            res.send({message:"Todo successful updated", updatedId:{id:req.body.id, text:req.body.text}})
+            res.send({message:"Todo successful updated", updatedId:{id: new ObjectId(req.body.id), text:req.body.text}})
         }) 
 }
