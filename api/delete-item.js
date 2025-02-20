@@ -11,6 +11,6 @@ exports.delete = async function(req, res) {
 
 exports.apiDelete = async function(req, res) {
     await db.db().collection("items").deleteOne({_id: new ObjectId(req.body.id)}).then(function() {
-      res.send({id:req.body.id, message:"Todo successfully deleted"})
+      res.send({message:"Todo successfully deleted", deleteId:req.body.id })
      }) 
    }

@@ -34,7 +34,7 @@ https://todo-app-nine-pi-93.vercel.app/
 
 - **URL:** /api/login
 - **Method:** POST
-- **Response {JSON}:** {"token": "string"}
+- **Response {JSON}:** {message: "Token successfully created", "token": "string"}
 
 
 ### Create/Add a Todo(Item)
@@ -42,7 +42,7 @@ https://todo-app-nine-pi-93.vercel.app/
 - **URL:** /api/create-item
 - **Method:** POST
 - **Request Body:** {"item":"string"}
-- **Response {JSON}:** {"id": "string", "item": "string", "message": "Todo sucessfully added"}
+- **Response {JSON}:** {"message": "Todo sucessfully added", createdItem:{"id": "string", "item": "string"}}
 
 
 ### Update an Existing Todo(Item)
@@ -50,7 +50,7 @@ https://todo-app-nine-pi-93.vercel.app/
 - **URL:** /api/update-item
 - **Method:** POST
 - **Request Body:** {"id":"string", "text":"string"}
-- **Response {JSON}:** {"id": "string", "text": "string","message": "Todo successful updated"}
+- **Response {JSON}:** {"message": "Todo successful updated", updatedItem:{"id": "string", "text": "string"}}
 
 
 ### Delete a Todo(Item)
@@ -58,11 +58,11 @@ https://todo-app-nine-pi-93.vercel.app/
 - **URL:** /api/delete-item
 - **Method:** POST
 - **Request Body:** {"id":"string"}
-- **Response {JSON}:** {"id":"string", "message": "Todo successfully deleted"}
+- **Response {JSON}:** {"message": "Todo successfully deleted", "deletedId":"string"}
 
 
 ### Get all Todos(Items)
 
 - **URL:** /api/view-items
 - **Method:** POST
-- **Response {JSON}:** {"id":"string", "item":"string", "id":"string", "item":"string"}
+- **Response {JSON}:** [{"id":"string", "text":"string"}, {"id":"string", "text":"string"}]

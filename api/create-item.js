@@ -22,7 +22,7 @@ exports.apiCreate = async function (req, res) {
   let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
   await db.db().collection("items").insertOne({ text: safeText }).then(result => {
     info = {insertedId: new ObjectId(req.body.id)}
-    res.json({ id:info.insertedId.toString(), item: req.body.item, message:"Todo sucessfully added"})
+    res.json({ message:"Todo sucessfully added", createItem:{id:info.insertedId.toString(), item: req.body.item} })
   }).catch(errors => {
     res.json(errors)
   })

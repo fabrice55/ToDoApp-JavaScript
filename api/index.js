@@ -52,11 +52,6 @@ exports.home = async function(req, res){
       console.error("Error fetching items:", err)
       res.status(500).send("Internal Server Error")
     }
-    
-      
-  
-    
-     
   }
 
  
