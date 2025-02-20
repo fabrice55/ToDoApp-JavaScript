@@ -28,7 +28,7 @@ https://todo-app-nine-pi-93.vercel.app/
 ### Headers
 
 - **Key:** Content-Type, **Value:** application/json
-- **Key:** Authorization, **Value:** Bearer <token>
+- **Key:** Authorization, **Value:** Bearer "token" (paste in your token without the double quotation marks)
 
 ### Create Token
 
