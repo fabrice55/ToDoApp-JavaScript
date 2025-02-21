@@ -32,7 +32,7 @@ https://todo-app-nine-pi-93.vercel.app/
 
 ### Create Token
 
-- **URL:** /api/login
+- **URL:** /api/authenticate
 - **Method:** POST
 - **Response {JSON}:** {message: "Token successfully created", "token": "string"}
 

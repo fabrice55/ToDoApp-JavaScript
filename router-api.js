@@ -5,7 +5,7 @@ const deleteItem = require('./api/delete-item')
 const viewItems = require('./api/index')
 const authController = require('./api/authController')
 
-apiRouter.post('/login', authController.createToken)
+apiRouter.post('/authenticate', authController.createToken)
 apiRouter.post('/create-item', authController.verifyToken, createItem.apiCreate)
 apiRouter.post('/update-item', authController.verifyToken, updateItem.apiUpdate)
 apiRouter.post('/delete-item', authController.verifyToken, deleteItem.apiDelete)
