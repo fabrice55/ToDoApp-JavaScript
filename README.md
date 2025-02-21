@@ -1,6 +1,6 @@
 # ToDo-App
 
-This a fullstack javaScript todo app with mongoDB database.
+This is a fullstack javaScript todo app with a mongoDB database.
 
 ## Run App Locally
 
