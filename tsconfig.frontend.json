@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "strict": true,
+    "lib": ["DOM", "ES2015"],
+    "skipLibCheck": true
+  },
+  "include": ["public/browser.ts"]
+}
